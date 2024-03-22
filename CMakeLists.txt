@@ -19,3 +19,13 @@ file(GLOB_RECURSE SOURCES "src/*.c")
 
 #Defino el ejecutable que se generará, con los datos que cargué anteriormente
 add_executable(${PROJECT_NAME} ${SOURCES})
+
+#Agrego las subcarpetas que contienen librerías
+add_subdirectory(lib/libdyn)
+add_subdirectory(lib/libsta)
+
+#Agrego las librerías que se utilizarán
+target_include_directories(${PROJECT_NAME} PUBLIC lib/libdyn/include)
+target_include_directories(${PROJECT_NAME} PUBLIC lib/libsta/include)
+
+target_link_libraries(${PROJECT_NAME} StatiCLib DynamiCLib)
